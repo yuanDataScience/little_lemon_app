@@ -1,8 +1,8 @@
 
-function Homepage() {
+function Home() {
     return (
         <p>Home page</p>
     )
 }
 
-export default Homepage;
+export default Home;

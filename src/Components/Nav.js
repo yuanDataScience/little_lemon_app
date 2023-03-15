@@ -1,20 +1,22 @@
 import { Link } from 'react-router-dom'
 import { HStack } from "@chakra-ui/react";
+import { links } from './Shared'
 
 
 function Nav() {
     return (
         <>
           <nav>
-            <ui>
+            <ui className={"App-ui"}>
               <HStack>
-              <li>
-                <Link to="/" className="nav-item">Homepage</Link>
-              </li>
-              <li>
-                <Link to="/about" className="nav-item">About</Link>
-              </li>
-              </HStack>
+                {
+                  links.map((link, index) => (
+                    <li key={index}>
+                      <Link to={link.path} className={"App-link"}>{link.name}</Link>
+                    </li>)
+                  )
+                }
+                </HStack>
             </ui>
           </nav>
         </>
