@@ -3,17 +3,16 @@ import {BrowserRouter} from 'react-router-dom';
 import Header from './Components/Header'
 import Main from './Components/Main'
 import Footer from './Components/Footer'
-// import "@fontsource/karla";
 
 function App() {
   return (
-    <div className="App">
+    <app className="App">
     <BrowserRouter>
       <Header/>
       <Main/>
+      <Footer/>
     </BrowserRouter>
-    <Footer/>
-    </div>
+    </app>
   );
 }
 

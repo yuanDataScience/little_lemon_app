@@ -1,25 +1,19 @@
 import { Link } from 'react-router-dom'
-import { HStack } from "@chakra-ui/react";
 import { links } from './Shared'
-
+import logo from '../images/Asset 16@4x.png'
 
 function Nav() {
     return (
-        <>
-          <nav>
-            <ui className={"App-ui"}>
-              <HStack>
-                {
+        <ui className={"App-ui-head"}>
+            <li><img className="App-logo" width="150px" src={logo} alt="Little Lemon Logo" /></li>
+              {
                   links.map((link, index) => (
                     <li key={index}>
                       <Link to={link.path} className={"App-link"}>{link.name}</Link>
                     </li>)
                   )
                 }
-                </HStack>
-            </ui>
-          </nav>
-        </>
+        </ui>
     )
 }
 
