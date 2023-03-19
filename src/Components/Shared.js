@@ -1,6 +1,3 @@
-import Home from './Home';
-import About from './About';
-
 import salad_img from '../images/greek_salad_2.jpg';
 import bruschetta_img from '../images/Bruschetta_mix.jpg';
 import lemoncake_img from '../images/lemon_cake_2.jpg';
@@ -8,34 +5,28 @@ import lemoncake_img from '../images/lemon_cake_2.jpg';
 export const links = [
     {
         path: "/",
-        name: "Home",
-        element: <Home/>
+        name: "Home"
     },
     {
         path: "/About",
-        name: "About",
-        element: <About/>
+        name: "About"
     },
     {
         path: "/Menu",
-        name: "Menu",
-        element: null
+        name: "Menu"
     }
     ,
     {
-        path: "/Reservations",
-        name: "Reservations",
-        element: null
+        path: "/Table Reservations",
+        name: "Table Reservations"
     },
     {
         path: "/OrderOnline",
-        name: "Order Online",
-        element: null
+        name: "Order Online"
     },
     {
         path: "/Login",
-        name: "Login",
-        element: null
+        name: "Login"
     }
 ];
 

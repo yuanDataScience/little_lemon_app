@@ -246,6 +246,16 @@ div[class^='App-order'] {
   width: 20rem;
 }
 
+.App-booking-form {
+  display: grid;
+  max-width: 200px;
+  gap: 20px;
+  font-family: 'Karla', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 1rem;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

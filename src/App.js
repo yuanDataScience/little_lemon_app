@@ -6,13 +6,13 @@ import Footer from './Components/Footer'
 
 function App() {
   return (
-    <app className="App">
+    <section className="App">
     <BrowserRouter>
       <Header/>
       <Main/>
       <Footer/>
     </BrowserRouter>
-    </app>
+    </section>
   );
 }
 
