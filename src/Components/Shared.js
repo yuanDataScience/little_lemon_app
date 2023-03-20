@@ -2,31 +2,41 @@ import salad_img from '../images/greek_salad_2.jpg';
 import bruschetta_img from '../images/Bruschetta_mix.jpg';
 import lemoncake_img from '../images/lemon_cake_2.jpg';
 
+import Home from "./Home";
+import About from "./About";
+import BookingPage from "./BookingPage";
+
 export const links = [
     {
         path: "/",
-        name: "Home"
+        name: "Home",
+        element: <Home/>
     },
     {
         path: "/About",
-        name: "About"
+        name: "About",
+        element: <About/>
     },
     {
         path: "/Menu",
-        name: "Menu"
+        name: "Menu",
+        element: null
     }
     ,
     {
         path: "/Table Reservations",
-        name: "Table Reservations"
+        name: "Table Reservations",
+        element: <BookingPage />
     },
     {
         path: "/OrderOnline",
-        name: "Order Online"
+        name: "Order Online",
+        element: null
     },
     {
         path: "/Login",
-        name: "Login"
+        name: "Login",
+        element: null
     }
 ];
 
@@ -50,4 +60,31 @@ export const specialItems = [
         description: "This comes straight from grandma's recipe book, every last ingredient has been sourced and is as authentic as can be imagined."
     }
 ];
+
+const seededRandom = function (seed) {
+    var m = 2**35 - 31;
+    var a = 185852;
+    var s = seed % m;
+    return function () {
+        return (s = s * a % m) / m;
+    };
+}
+
+export const fetchAPI = function(date) {
+    let result = [];
+    let random = seededRandom(date.getDate());
+
+    for(let i = 17; i <= 23; i++) {
+        if(random() < 0.5) {
+            result.push(i + ':00');
+        }
+        if(random() < 0.5) {
+            result.push(i + ':30');
+        }
+    }
+    return result;
+};
+export const submitAPI = function(formData) {
+    return true;
+};
 
