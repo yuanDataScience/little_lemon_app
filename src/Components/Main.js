@@ -6,7 +6,7 @@ const Main = () =>{
 
     return (
 
-    <main className="App-main">
+    <main className="App-main" aria-label="main frame">
         <Routes>
             {
                 links.map((link, index) => (

@@ -73,7 +73,7 @@ test('Occasion in booking form has attrbiute of required', () => {
 })
 
 
-test('Make Your Reservation button will be enabled and submit funtion will be called if all fileds are correct', ()=>{
+test('Valid state unit test. "Make Your Reservation" button is enabled and form submit funtion is called if all form fileds are correct', ()=>{
   render(<BrowserRouter>
     <BookingPage />
  </BrowserRouter>);
@@ -107,7 +107,7 @@ expect(submitButton).not.toHaveAttribute("disabled");
 expect(handleSubmit).toHaveBeenCalled();
 })
 
-test('Make Your Reservation button will be disabled and submit funtion will not be called if number of guests is negative', ()=>{
+test('invalid state unit test. "Make Your Reservation" button is disabled and form submit funtion is not called if number of guests is negative', ()=>{
   render(<BrowserRouter>
     <BookingPage />
  </BrowserRouter>);
@@ -116,6 +116,41 @@ const handleSubmit = jest.fn();
 
 const resDate = screen.getByLabelText(/Choose date*/);
 fireEvent.change(resDate, { target: { value: "2023-03-22" } });
+
+const resTime = screen.getByLabelText(/Choose time*/);
+fireEvent.change(resTime, { target: { value: "17:00" } });
+
+const guests = screen.getByLabelText(/Number of guests*/);
+fireEvent.change(guests, { target: { value: "-4" } });
+
+const occasion = screen.getByLabelText(/Occasion*/);
+fireEvent.change(occasion, { target: { value: "Birthday" } });
+
+// find the button element and simulate a click event
+const submitButton = screen.getByRole("button");
+
+// find form element by testId and set its onsubmit function to the mock function
+const form = screen.getByTestId("bookingForm");
+form.onsubmit = handleSubmit;
+
+// fire click event of the submit button
+fireEvent.click(submitButton);
+
+// test if the button is disabled and the form submit function has not been called
+expect(submitButton).toHaveAttribute("disabled");
+expect(handleSubmit).not.toHaveBeenCalled();
+})
+
+
+test('invalid state unit test. "Make Your Reservation" button is disabled and form submit funtion is not called if date field is not selected', ()=>{
+  render(<BrowserRouter>
+    <BookingPage />
+ </BrowserRouter>);
+
+const handleSubmit = jest.fn();
+
+const resDate = screen.getByLabelText(/Choose date*/);
+fireEvent.change(resDate, { target: { value: "" } });
 
 const resTime = screen.getByLabelText(/Choose time*/);
 fireEvent.change(resTime, { target: { value: "17:00" } });
