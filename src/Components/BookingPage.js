@@ -10,6 +10,7 @@ export const initializeTimes =() => {
     return fetchAPI(today);
 }
 
+
 const BookingPage = () => {
    const [states, dispatch] = useReducer(updateTime, initializeTimes());
    const navigate = useNavigate();

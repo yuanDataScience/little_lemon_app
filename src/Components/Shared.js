@@ -85,6 +85,10 @@ export const fetchAPI = function(date) {
     return result;
 };
 export const submitAPI = function(formData) {
-    return true;
+    let isValid = false;
+    if (formData.resDate && formData.resTime && formData.guests>=1 && formData.guests<=10) {
+        isValid = true;
+    }
+    return isValid;
 };
 

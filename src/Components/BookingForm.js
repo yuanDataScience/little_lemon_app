@@ -1,39 +1,52 @@
 import React, {useState} from "react";
+import {submitAPI}  from "./Shared";
 
 const BookForm = (props) => {
-    const [resDate, setResDate] = useState(new Date());
-    const [resTime, setResTime] = useState("select");
-    const [guests, setGuests] = useState(2);
-    const [occasion, setOccasion] = useState("Birthday")
+
+    const [formData, setFormData] = useState({
+        resDate: new Date(),
+        resTime: "",
+        guests: 2,
+        occasion: "Birthday"
+    })
+
+    const handleChange = (e) => {
+        const newState = {...formData};
+        const fieldId = e.target.id;
+        const value = e.target.value;
+        newState[fieldId] = value;
+        setFormData(newState);
+    }
 
     return (
         <section className="App-booking-page">
             <h1 className="App-booking-heading">BOOK A TABLE NOW</h1>
-            <form className="App-booking-form" onSubmit={e => {
+            <form className="App-booking-form" data-testid="bookingForm" onSubmit={e => {
             e.preventDefault();
-            props.submitForm()}}>
-                <label htmlFor="res-date">Choose date</label>
-                <input type="date" id="res-date" value={resDate} onChange=
+            props.submitForm(formData)}}>
+                <label htmlFor="resDate">Choose date*</label>
+                <input type="date" id="resDate" value={formData.resDate} required onChange=
                 {
                     e => {
-                        setResDate(e.target.value);
-                        props.dispatch({type: new Date(resDate)});
+                        handleChange(e);
+                        props.dispatch({type: new Date(formData.resDate)});
+                        // alert(JSON.stringify(props))
                     }
                 }></input>
-                <label htmlFor="res-time">Choose time</label>
-                <select id="res-time" value={resTime} onChange={e => setResTime(e.target.value)}>
+                <label htmlFor="resTime">Choose time*</label>
+                <select id="resTime" value={formData.resTime} required onChange={ e => handleChange(e)}>
                     {
                         props.availableTimes.map((time =>(<option key={time}>{time}</option>)))
                     }
                 </select>
-                <label htmlFor="guests">Number of guests</label>
-                <input type="number" placeholder="1" min="1" max="10" id="guests" value={guests} onChange={e =>setGuests(e.target.value)}></input>
-                <label htmlFor="occasion">Occasion</label>
-                <select id="occasion" value={occasion} onChange={e =>setOccasion(e.target.value)}>
+                <label htmlFor="guests">Number of guests*</label>
+                <input type="number" placeholder="1" min="1" max="10" id="guests" required value={formData.guests} onChange={e => handleChange(e)}></input>
+                <label htmlFor="occasion">Occasion*</label>
+                <select id="occasion" value={formData.occasion} required onChange={e => handleChange(e)}>
                     <option>Birthday</option>
                     <option>Anniversary</option>
                 </select>
-                <button type="submit" className="App-button" >Make Your reservation</button>
+                <button disabled={!submitAPI(formData)} type="submit" onClick={e=>{}} className="App-button" >Make Your reservation</button>
             </form>
         </section>
 )}
